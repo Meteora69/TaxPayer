@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.example.taxpayer.api.enums.UtilityService;
 
 import java.math.BigDecimal;
 
@@ -17,8 +18,9 @@ public class UtilityServiceEntity {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
+        @Enumerated(EnumType.STRING) // Зберігає назву enum у вигляді тексту в базі даних
         @Column(name = "name", nullable = false)
-        private String name;
+        private UtilityService name;
 
         @Column(name = "is_fixed", nullable = false)
         private boolean isFixed;

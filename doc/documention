@@ -1,0 +1,50 @@
+1. Створення нового UtilityService
+Method: POST
+URL: http://localhost:8080/api/utility-services
+Headers:
+Content-Type: application/json
+Body (JSON):
+json
+
+
+{
+  "name": "WATER",
+  "isFixed": true,
+  "tariff": 15.75,
+  "cycle": "monthly"
+}
+
+2. Отримання всіх UtilityService (з пагінацією)
+Method: GET
+URL: http://localhost:8080/api/utility-services?page=0&size=5
+Headers:
+Accept: application/json
+
+3. Отримання UtilityService за ID
+Method: GET
+URL: http://localhost:8080/api/utility-services/{id}
+(Замініть {id} на існуючий ID, наприклад: 1)
+Headers:
+Accept: application/json
+
+4. Оновлення UtilityService
+Method: PUT
+URL: http://localhost:8080/api/utility-services/{id}
+(Замініть {id} на існуючий ID, наприклад: 1)
+Headers:
+Content-Type: application/json
+Body (JSON):
+json
+Копіювати код
+{
+  "id": 1,
+  "name": "GAS",
+  "isFixed": false,
+  "tariff": 10.50,
+  "cycle": "quarterly"
+}
+
+5. Видалення UtilityService
+Method: DELETE
+URL: http://localhost:8080/api/utility-services/{id}
+(Замініть {id} на існуючий ID, наприклад: 1)

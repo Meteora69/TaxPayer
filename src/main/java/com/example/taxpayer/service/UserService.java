@@ -1,37 +1,61 @@
 package com.example.taxpayer.service;
 
-import com.example.taxpayer.api.model.User;
+import com.example.taxpayer.api.dto.UserCreationDto;
+import com.example.taxpayer.api.dto.UserDto;
+import com.example.taxpayer.api.entity.UserEntity;
+import com.example.taxpayer.api.mapper.UserMapper;
+import com.example.taxpayer.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
+import com.example.taxpayer.api.exception.UserNotFoundException;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    private List<User> userList;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserService() {
-        userList = new ArrayList<>();
-
-        User user1 = new User(1,"Ida","ida@mail.com","adress",0.0);
-        User user2 = new User(2,"Ida","ida@mail.com","adress",0.0);
-        User user3 = new User(3,"Ida","ida@mail.com","adress",0.0);
-        User user4 = new User(4,"Ida","ida@mail.com","adress",0.0);
-        User user5 = new User(5,"Ida","ida@mail.com","adress",0.0);
-
-        userList.addAll(Arrays.asList(user1,user2,user3,user4,user5));
+    @Transactional
+    public UserDto createUser(UserCreationDto userCreationDto) {
+        UserEntity userEntity = userMapper.toEntity(userCreationDto);
+        UserEntity savedEntity = userRepository.save(userEntity);
+        return userMapper.toDto(savedEntity);
     }
-    public Optional<User> getUser(Long id) {
-        Optional optional = Optional.empty();
-        for (User user : userList) {
-            if (user.getId() == id) {
-                optional = Optional.of(user);
-                return optional;
-            }
+
+    @Transactional(readOnly = true)
+    public UserDto getUserById(Long id) throws UserNotFoundException {
+        UserEntity userEntity = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + id));
+        return userMapper.toDto(userEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserDto> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public UserDto updateUser(Long id, UserDto userDto) throws UserNotFoundException {
+        UserEntity existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + id));
+
+        userMapper.partialUpdate(userDto, existingUser);
+        UserEntity updatedEntity = userRepository.save(existingUser);
+        return userMapper.toDto(updatedEntity);
+    }
+
+    @Transactional
+    public void deleteUser(Long id) throws UserNotFoundException {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException("User not found with ID: " + id);
         }
-        return optional;
+        userRepository.deleteById(id);
     }
 }
