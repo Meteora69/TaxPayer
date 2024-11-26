@@ -1,0 +1,69 @@
+
+2024-11-27 00:14:02 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-27 00:14:02 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-27 00:14:04 INFO  [main] c.e.taxpayer.TaxPayerApplication - Starting TaxPayerApplication using Java 17.0.12 with PID 5272 (D:\TaxPayer\target\classes started by agoda in D:\TaxPayer)
+2024-11-27 00:14:04 DEBUG [main] c.e.taxpayer.TaxPayerApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-11-27 00:14:04 INFO  [main] c.e.taxpayer.TaxPayerApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-27 00:14:04 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-27 00:14:04 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-27 00:14:04 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 5 JPA repository interfaces.
+2024-11-27 00:14:04 INFO  [main] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 5 JPA repository interfaces.
+2024-11-27 00:14:05 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-11-27 00:14:05 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-11-27 00:14:05 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-11-27 00:14:05 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-27 00:14:05 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-27 00:14:05 INFO  [main] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-27 00:14:05 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 856 ms
+2024-11-27 00:14:05 INFO  [main] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 856 ms
+2024-11-27 00:14:05 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-27 00:14:05 INFO  [main] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-27 00:14:06 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-27 00:14:06 INFO  [main] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-27 00:14:06 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-27 00:14:06 WARN  [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-27 00:14:06 DEBUG [main] _.s.w.s.HandlerMapping.Mappings - 
+	c.e.t.a.c.AddressController:
+	{PUT [/api/addresses/{id}]}: update(Long,AddressDto)
+	{DELETE [/api/addresses/{id}]}: delete(Long)
+	{POST [/api/addresses]}: create(AddressCreationDto)
+	{GET [/api/addresses]}: getAll(int,int)
+	{GET [/api/addresses/{id}]}: getById(Long)
+2024-11-27 00:14:06 DEBUG [main] _.s.w.s.HandlerMapping.Mappings - 
+	c.e.t.a.c.BillController:
+	{POST [/api/bills]}: createBill(BillCreationDto)
+	{GET [/api/bills/{id}]}: getBillById(Long)
+	{DELETE [/api/bills/{id}]}: deleteBill(Long)
+	{PUT [/api/bills/{id}]}: updateBill(Long,BillDto)
+	{GET [/api/bills]}: getAllBills()
+2024-11-27 00:14:06 DEBUG [main] _.s.w.s.HandlerMapping.Mappings - 
+	c.e.t.a.c.PaymentController:
+	{POST [/api/payments]}: createPayment(PaymentCreationDto)
+	{GET [/api/payments/{id}]}: getPaymentById(Long)
+	{PUT [/api/payments/{id}]}: updatePayment(Long,PaymentDto)
+	{DELETE [/api/payments/{id}]}: deletePayment(Long)
+	{GET [/api/payments]}: getAllPayments()
+2024-11-27 00:14:06 DEBUG [main] _.s.w.s.HandlerMapping.Mappings - 
+	c.e.t.a.c.UserController:
+	{GET [/api/users/{id}]}: getUserById(Long)
+	{PUT [/api/users/{id}]}: updateUser(Long,UserDto)
+	{DELETE [/api/users/{id}]}: deleteUser(Long)
+	{GET [/api/users]}: getAllUsers()
+	{POST [/api/users]}: createUser(UserCreationDto)
+2024-11-27 00:14:06 DEBUG [main] _.s.w.s.HandlerMapping.Mappings - 
+	c.e.t.a.c.UtilityServiceController:
+	{PUT [/api/utility-services/{id}]}: update(Long,UtilityServiceDto)
+	{DELETE [/api/utility-services/{id}]}: delete(Long)
+	{POST [/api/utility-services]}: create(UtilityServiceCreationDto)
+	{GET [/api/utility-services]}: getAll(int,int)
+	{GET [/api/utility-services/{id}]}: getById(Long)
+2024-11-27 00:14:06 DEBUG [main] _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-11-27 00:14:06 DEBUG [main] _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2024-11-27 00:14:06 DEBUG [main] _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2024-11-27 00:14:07 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-11-27 00:14:07 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-11-27 00:14:07 INFO  [main] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-11-27 00:14:07 INFO  [main] c.e.taxpayer.TaxPayerApplication - Started TaxPayerApplication in 3.051 seconds (process running for 3.817)
