@@ -29,9 +29,17 @@ public class PaymentController {
         return ResponseEntity.ok(payment);
     }
 
+    // Оновлений метод для фільтрації платежів
     @GetMapping
-    public ResponseEntity<List<PaymentDto>> getAllPayments() {
-        List<PaymentDto> payments = paymentService.getAllPayments();
+    public ResponseEntity<List<PaymentDto>> getAllPayments(
+            @RequestParam(required = false) Long billId,
+            @RequestParam(required = false) Double minAmount,
+            @RequestParam(required = false) Double maxAmount,
+            @RequestParam(required = false) String dueDate,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        List<PaymentDto> payments = paymentService.getAllPayments(billId, minAmount, maxAmount, dueDate, page, size);
         return ResponseEntity.ok(payments);
     }
 

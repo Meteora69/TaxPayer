@@ -21,6 +21,9 @@ public interface PaymentMapper {
     @Mapping(source = "billId", target = "bill.id")
     PaymentEntity toEntity(PaymentCreationDto paymentCreationDto);
 
+    @Mapping(source = "userId", target = "user.id")
+    @Mapping(source = "billId", target = "bill.id")
+    void updateEntityFromDto(PaymentDto paymentDto, @MappingTarget PaymentEntity paymentEntity);
     // Оновлення сутності
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     PaymentEntity partialUpdate(PaymentDto paymentDto, @MappingTarget PaymentEntity paymentEntity);

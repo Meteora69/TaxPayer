@@ -3,21 +3,24 @@ package com.example.taxpayer.api.controller;
 import com.example.taxpayer.api.dto.AddressCreationDto;
 import com.example.taxpayer.api.dto.AddressDto;
 import com.example.taxpayer.service.AddressService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/addresses")
 @RequiredArgsConstructor
+@Validated
 public class AddressController {
 
     private final AddressService addressService;
 
     @PostMapping
-    public ResponseEntity<AddressDto> create(@RequestBody AddressCreationDto addressCreationDto) {
+    public ResponseEntity<AddressDto> create(@Valid @RequestBody AddressCreationDto addressCreationDto) {
         AddressDto createdAddress = addressService.create(addressCreationDto);
         return new ResponseEntity<>(createdAddress, HttpStatus.CREATED);
     }

@@ -23,7 +23,7 @@ public class UtilityServiceEntity {
         private UtilityService name;
 
         @Column(name = "is_fixed", nullable = false)
-        private boolean isFixed;
+        private Boolean isFixed;
 
         @Column(name = "tariff", nullable = false)
         private BigDecimal tariff;

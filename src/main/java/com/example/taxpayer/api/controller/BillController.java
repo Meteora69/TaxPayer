@@ -1,3 +1,5 @@
+
+
 package com.example.taxpayer.api.controller;
 
 import com.example.taxpayer.api.dto.BillCreationDto;
@@ -29,9 +31,17 @@ public class BillController {
         return ResponseEntity.ok(bill);
     }
 
+    // Оновлений метод для фільтрації
     @GetMapping
-    public ResponseEntity<List<BillDto>> getAllBills() {
-        List<BillDto> bills = billService.getAllBills();
+    public ResponseEntity<List<BillDto>> getAllBills(
+            @RequestParam(required = false) Long userId, // Додано фільтрацію за user_id
+            @RequestParam(required = false) Double minAmount,
+            @RequestParam(required = false) Double maxAmount,
+            @RequestParam(required = false) String dueDate,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        List<BillDto> bills = billService.getAllBills(userId, minAmount, maxAmount, dueDate, page, size);
         return ResponseEntity.ok(bills);
     }
 

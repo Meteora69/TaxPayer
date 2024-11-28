@@ -48,3 +48,295 @@ json
 Method: DELETE
 URL: http://localhost:8080/api/utility-services/{id}
 (Замініть {id} на існуючий ID, наприклад: 1)
+
+1. Створення нового Address
+Method: POST
+URL: http://localhost:8080/api/addresses
+Headers:
+
+plaintext
+Копіювати код
+Content-Type: application/json
+Body (JSON):
+
+json
+Копіювати код
+{
+  "city": "Springfield",
+  "street": "Main Street",
+  "postalCode": "12345",
+  "houseNumber": "10A",
+  "userId": 1
+}
+Опис полів:
+
+city — Назва міста.
+street — Назва вулиці.
+postalCode — Поштовий індекс.
+houseNumber — Номер будинку.
+userId — Ідентифікатор користувача, до якого належить адреса (обов’язкове поле).
+2. Отримання всіх Address (з пагінацією)
+Method: GET
+URL: http://localhost:8080/api/addresses?page=0&size=5
+Headers:
+
+plaintext
+Копіювати код
+Accept: application/json
+Параметри запиту:
+
+page — Номер сторінки (починається з 0).
+size — Кількість записів на сторінку.
+3. Отримання Address за ID
+Method: GET
+URL: http://localhost:8080/api/addresses/{id}
+(Замініть {id} на існуючий ID, наприклад: 1)
+Headers:
+
+plaintext
+Копіювати код
+Accept: application/json
+4. Оновлення Address
+Method: PUT
+URL: http://localhost:8080/api/addresses/{id}
+(Замініть {id} на існуючий ID, наприклад: 1)
+Headers:
+
+plaintext
+Копіювати код
+Content-Type: application/json
+Body (JSON):
+
+json
+Копіювати код
+{
+  "id": 1,
+  "city": "Springfield",
+  "street": "Elm Street",
+  "postalCode": "54321",
+  "houseNumber": "20B",
+  "userId": 1
+}
+Опис полів:
+
+id — Ідентифікатор адреси (обов'язковий для оновлення).
+city, street, postalCode, houseNumber, userId — Поля, які потрібно оновити.
+5. Видалення Address
+Method: DELETE
+URL: http://localhost:8080/api/addresses/{id}
+(Замініть {id} на існуючий ID, наприклад: 1)
+Headers:
+
+plaintext
+Копіювати код
+Accept: application/json
+
+1. Створення нового користувача
+Method: POST
+URL: http://localhost:8080/api/users
+Headers:
+
+json
+Копіювати код
+{
+  "Content-Type": "application/json"
+}
+Body (JSON):
+
+json
+Копіювати код
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "securepassword123",
+  "balance": 1000.50
+}
+2. Отримання всіх користувачів
+Method: GET
+URL: http://localhost:8080/api/users
+Headers:
+
+json
+Копіювати код
+{
+  "Accept": "application/json"
+}
+3. Отримання користувача за ID
+Method: GET
+URL: http://localhost:8080/api/users/{id}
+(Замініть {id} на реальний ідентифікатор, наприклад: 1)
+Headers:
+
+json
+Копіювати код
+{
+  "Accept": "application/json"
+}
+4. Оновлення користувача
+Method: PUT
+URL: http://localhost:8080/api/users/{id}
+(Замініть {id} на реальний ідентифікатор, наприклад: 1)
+Headers:
+
+json
+Копіювати код
+{
+  "Content-Type": "application/json"
+}
+Body (JSON):
+
+json
+Копіювати код
+{
+  "id": 1,
+  "name": "Jane Doe",
+  "email": "jane.doe@example.com",
+  "balance": 1200.75
+}
+5. Видалення користувача
+Method: DELETE
+URL: http://localhost:8080/api/users/{id}
+(Замініть {id} на реальний ідентифікатор, наприклад: 1)
+Headers:
+
+json
+Копіювати код
+{
+  "Accept": "application/json"
+}
+1. Create Bill (POST)
+To create a bill, you need to send a POST request with a BillCreationDto body. This will create a new bill with the provided data.
+
+Request:
+Method: POST
+URL: http://localhost:8080/api/bills
+Body (JSON):
+json
+Копіювати код
+{
+  "amount": 100.5,
+  "dueDate": "2024-12-15",
+  "description": "Electricity Bill",
+  "userId": 1,
+  "addressId": 1,
+  "serviceId": 1
+}
+Expected Response:
+Status: 201 Created
+Response Body:
+json
+Копіювати код
+{
+  "id": 1,
+  "amount": 100.5,
+  "dueDate": "2024-12-15",
+  "description": "Electricity Bill",
+  "user": {"id": 1},
+  "address": {"id": 1},
+  "service": {"id": 1}
+}
+2. Get Bill by ID (GET)
+To fetch a specific bill by its ID, use a GET request.
+
+Request:
+Method: GET
+URL: http://localhost:8080/api/bills/{id}
+(e.g., http://localhost:8080/api/bills/1)
+Expected Response:
+Status: 200 OK
+Response Body:
+json
+Копіювати код
+{
+  "id": 1,
+  "amount": 100.5,
+  "dueDate": "2024-12-15",
+  "description": "Electricity Bill",
+  "user": {"id": 1},
+  "address": {"id": 1},
+  "service": {"id": 1}
+}
+3. Get All Bills with Filters (GET)
+To fetch all bills with filtering (e.g., by userId, minAmount, maxAmount, dueDate), use a GET request with query parameters.
+
+Request:
+Method: GET
+URL: http://localhost:8080/api/bills
+Query Parameters:
+userId (Optional)
+minAmount (Optional)
+maxAmount (Optional)
+dueDate (Optional)
+page (Optional, default 0)
+size (Optional, default 10)
+Example:
+http://localhost:8080/api/bills?userId=1&minAmount=50&maxAmount=200&dueDate=2024-12-15&page=0&size=10
+
+Expected Response:
+Status: 200 OK
+Response Body:
+json
+Копіювати код
+[
+  {
+    "id": 1,
+    "amount": 100.5,
+    "dueDate": "2024-12-15",
+    "description": "Electricity Bill",
+    "user": {"id": 1},
+    "address": {"id": 1},
+    "service": {"id": 1}
+  }
+]
+4. Update Bill (PUT)
+To update an existing bill, send a PUT request with the updated bill data.
+
+Request:
+Method: PUT
+URL: http://localhost:8080/api/bills/{id}
+(e.g., http://localhost:8080/api/bills/1)
+Body (JSON):
+json
+Копіювати код
+{
+  "amount": 150.0,
+  "dueDate": "2024-12-20",
+  "description": "Updated Electricity Bill",
+  "user": {"id": 1},
+  "address": {"id": 1},
+  "service": {"id": 1}
+}
+Expected Response:
+Status: 200 OK
+Response Body:
+json
+Копіювати код
+{
+  "id": 1,
+  "amount": 150.0,
+  "dueDate": "2024-12-20",
+  "description": "Updated Electricity Bill",
+  "user": {"id": 1},
+  "address": {"id": 1},
+  "service": {"id": 1}
+}
+5. Delete Bill (DELETE)
+To delete a bill by its ID, use a DELETE request.
+
+Request:
+Method: DELETE
+URL: http://localhost:8080/api/bills/{id}
+(e.g., http://localhost:8080/api/bills/1)
+Expected Response:
+Status: 204 No Content
+Response Body: No content returned.
+6. Sorting Bills (GET with Sort)
+You can add sorting to the getAllBills endpoint by specifying the sort query parameter in the request.
+
+Request:
+Method: GET
+URL: http://localhost:8080/api/bills?sort=amount,desc&page=0&size=10
+The sort parameter is composed of two parts:
+
+Field: The field to sort by (e.g., amount, dueDate).
+Direction: The sort direction (asc for ascending, desc for descending).
